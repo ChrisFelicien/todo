@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import ListTodo from "./components/ListTodo";
 import AddTodo from "./components/addTodo";
 
@@ -36,11 +37,15 @@ const App = () => {
       <h1 className='text-center uppercase font-bold text-2xl'>Todo list</h1>
       <AddTodo onAddTodo={handleAddTodo} />
       <div className='mt-12'>
-        <ListTodo
-          listTodo={todoList}
-          onCompleted={handleCompleted}
-          onDelete={deleteTodo}
-        />
+        {!todoList.length ? (
+          <p>No task please start by adding the new one</p>
+        ) : (
+          <ListTodo
+            listTodo={todoList}
+            onCompleted={handleCompleted}
+            onDelete={deleteTodo}
+          />
+        )}
       </div>
     </div>
   );
